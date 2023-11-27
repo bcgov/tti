@@ -7,8 +7,6 @@
 /fpo-web/openshift/templates/nginx-runtime/nginx-runtime.local.param
 /fpo-web/openshift/templates/angular-on-nginx/angular-on-nginx-deploy.local.param
 /fpo-web/openshift/templates/angular-on-nginx/angular-on-nginx-build.local.param
-/fpo-pdf/openshift/templates/weasyprint-deploy.local.param
-/fpo-pdf/openshift/templates/weasyprint-build.local.param
 /fpo-db/openshift/templates/postgresql-deploy.local.param
 /fpo-db/openshift/templates/postgresql-build.local.param
 /fpo-api/openshift/templates/schema-spy/schema-spy-deploy.local.param

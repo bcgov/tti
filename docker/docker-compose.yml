@@ -123,16 +123,6 @@ services:
     # volumes:
       # - fpo-data:/var/lib/pgsql/data 
 
-  # 
-  # fpo-pdf
-  # 
-  fpo-pdf:
-    image: aquavitae/weasyprint
-    networks:
-      - fpo
-    ports:
-      - 8083:5001
-
 networks:
   fpo:
 

@@ -190,7 +190,7 @@ parameters:
     displayName: Name
     name: NAME
     required: true
-    value: angular-scaffold
+    value: angular-on-nginx
 
   - name: APP_NAME
     displayName: App Name

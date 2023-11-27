@@ -42,7 +42,7 @@ exit 1
 # -----------------------------------------------------------------------------------------------------------------
 # Default Settings:
 # -----------------------------------------------------------------------------------------------------------------
-DEFAULT_CONTAINERS="fpo-db fpo-api schema-spy fpo-web fpo-pdf"
+DEFAULT_CONTAINERS="fpo-db fpo-api schema-spy fpo-web"
 # -----------------------------------------------------------------------------------------------------------------
 # Functions:
 # -----------------------------------------------------------------------------------------------------------------
@@ -139,21 +139,11 @@ build-api() {
     'fpo-django'
 }
 
-build-pdf() {
-  #
-  # fpo-pdf
-  #
-  echo -e "\nGetting pdf image ..."
-  docker pull aquavitae/weasyprint
-  docker tag aquavitae/weasyprint pdf
-}
-
 buildImages() {
   build-web
   build-db
   build-schema-spy
   build-api
-  build-pdf
 }
 
 build() {
@@ -185,7 +175,6 @@ configureEnvironment () {
 
   # fpo-api
   export API_HTTP_PORT=${API_HTTP_PORT-8081}
-  export PDF_SERVICE_URL=${PDF_SERVICE_URL-http://fpo-pdf:5001}
   export OVERRIDE_USER_ID=${OVERRIDE_USER_ID-}
   export DATABASE_SERVICE_NAME="fpo-db"
   export DATABASE_ENGINE="postgresql"
@@ -280,12 +269,6 @@ case "$COMMAND" in
         ;;
       fpo-web)
         build-web
-        ;;
-      fpo-solr)
-        build-solr
-        ;;
-      fpo-pdf)
-        build-pdf
         ;;
       *)
        buildImages

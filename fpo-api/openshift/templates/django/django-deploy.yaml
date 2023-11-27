@@ -153,8 +153,6 @@ objects:
                   value: "${DJANGO_SECRET_KEY}"
                 - name: DJANGO_DEBUG
                   value: "${DJANGO_DEBUG}"
-                - name: PDF_SERVICE_URL
-                  value: ${PDF_SERVICE_URL}
                 - name: SFDC_USERNAME
                   value: "${SFDC_USERNAME}"
                 - name:  SFDC_SECRET
@@ -224,11 +222,6 @@ parameters:
     description: If Django is in debug mode
     required: true
     value: "False"
-  - name: PDF_SERVICE_URL
-    displayName: PDF Service URL
-    description: Internal URL to the PDF service.
-    required: true
-    value: "http://weasyprint:5001"
   - name: TAG_NAME
     displayName: Environment TAG name
     description: The TAG name for this environment, e.g., dev, test, prod

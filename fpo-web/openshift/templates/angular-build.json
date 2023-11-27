@@ -85,7 +85,7 @@
       "displayName": "GIT Source Repo URL",
       "description": "A GIT URL to your source code.",
       "required": true,
-      "value": "https://github.com/csherman-gov/tti.git"
+      "value": "https://github.com/bcgov/tti.git"
     },
     {
       "name": "GIT_REF",
