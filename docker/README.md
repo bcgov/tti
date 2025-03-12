@@ -19,6 +19,25 @@ The benefits to using this approach are;
 * The S2I CLI
   * Download and install the S2I CLI tool; [source-to-image](https://github.com/openshift/source-to-image)
   * Make sure it is available on your `PATH`.  The `manage.sh` will look for the `s2i` executable on your `PATH`.  If it is not found you will get a message asking you to download and set it on your `PATH`.
+  * For example, on Linux WSL do the following:
+  ```
+  wget https://github.com/openshift/source-to-image/releases/download/v1.4.0/source-to-image-v1.4.0-d3544c7e-linux-amd64.tar.gz
+  tar -xvzf source-to-image-v1.4.0-d3544c7e-linux-amd64.tar.gz
+  sudo cp s2i /usr/local/bin
+  sudo cp sti /usr/local/bin
+  
+  # to setup podman
+  sudo apt-get podman
+  code ~/.bashrc
+  alias docker=podman  # add this to last line of .bashrc
+  docker --version     # verify podman alias
+  code /etc/containers/registries.conf
+  # add this line to bottom of registries.conf
+  unqualified-search-registries = ["docker.io"]
+  systemctl enable --user podman.socket
+  systemctl start --user podman.socket
+  systemctl status --user podman.socket
+  ```
 * If you are working on Windows, use Git Bash (or equivalent shell) to run the scripts.
 * Fork and clone a local working copy of the project source code.
 * Open a command/shell window to the project's `./docker` folder.
