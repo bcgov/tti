@@ -1,0 +1,31 @@
+name: API Image - Build & Tag Dev
+
+on:
+  workflow_dispatch:
+  push:
+    paths-ignore:
+      - '.github/**'
+    branches: [ master ]
+  pull_request:
+    types: [ opened, edited, reopened, review_requested ]
+    branches: [ master ]
+
+env:
+  OPENSHIFT_NAMESPACE: ${{ secrets.OPENSHIFT_NAMESPACE }}
+  BUILD_CONFIG: django
+
+jobs:
+
+  openshift-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Run OpenShift build
+        uses: redhat-developer/openshift-actions@v1.1
+        with:
+          version: "latest"
+          openshift_server_url: ${{ secrets.OPENSHIFT_URL }}
+          parameters: '{"apitoken": "${{ secrets.OPENSHIFT_TOKEN }}", "acceptUntrustedCerts": "true"}'
+          cmd: |
+            'version'
+            'start-build ${BUILD_CONFIG} -n ${OPENSHIFT_NAMESPACE} --follow'
