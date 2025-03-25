@@ -3,8 +3,9 @@ name: API Image - Build & Tag Dev
 on:
   workflow_dispatch:
   push:
-    paths-ignore:
-      - '.github/**'
+    paths:
+      - fpo-api/**
+      - '!README.md'
     branches: [ master ]
   pull_request:
     types: [ opened, edited, reopened, review_requested ]
