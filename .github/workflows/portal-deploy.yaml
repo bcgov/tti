@@ -1,0 +1,72 @@
+name: Portal - Deploy to Test / Production
+
+on:
+  workflow_dispatch:
+    inputs:
+      image_tag:
+        type: choice
+        description: Select Target Environment
+        options:
+        - -Select-
+        - Test Environment
+        - Production Environment
+        required: true
+
+env:
+  IMAGE_NAME: angular-on-nginx-build
+
+jobs:
+
+  deploy-image:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Select target as ${{ github.event.inputs.image_tag }}
+        id: set-env
+        run: |
+          echo Deploy to: "${{ github.event.inputs.image_tag }}"
+          case "${{ github.event.inputs.image_tag }}" in
+            "Test Environment")
+              echo "SRC_TAG=latest" >> $GITHUB_ENV
+              echo "DEST_TAG=test" >> $GITHUB_ENV
+              ;;
+            "Production Environment")
+              echo "SRC_TAG=test" >> $GITHUB_ENV
+              echo "DEST_TAG=prod" >> $GITHUB_ENV
+              ;;
+            *)
+              echo "Unknown Environment: ${{ github.event.inputs.image_tag }}" >&2
+              exit 1
+              ;;
+          esac
+
+      - name: Install and Verify OC
+        uses: redhat-actions/oc-installer@v1
+
+      - name: Verify OC Version
+        run: oc version --client
+
+      - name: Login to OpenShift
+        uses: redhat-actions/oc-login@v1
+        with:
+          openshift_server_url: ${{ secrets.OPENSHIFT_URL }}
+          openshift_token: ${{ secrets.OPENSHIFT_TOKEN }}
+          insecure_skip_tls_verify: true
+          namespace: ${{ secrets.OPENSHIFT_NAMESPACE }}
+
+      - name: Create Rollback Image for ${{ github.event.inputs.image_tag }}
+        env:
+          NAMESPACE: ${{ secrets.OPENSHIFT_NAMESPACE }}
+          DEST_TAG: ${{ env.DEST_TAG }}
+        run: |
+          echo "Tagging $IMAGE_NAME:$DEST_TAG -> $DEST_TAG-backup"
+          oc tag -n ${NAMESPACE} ${IMAGE_NAME}:${DEST_TAG} ${IMAGE_NAME}:${DEST_TAG}-backup
+
+      - name: Tag Image for ${{ github.event.inputs.image_tag }}
+        env:
+          NAMESPACE: ${{ secrets.OPENSHIFT_NAMESPACE }}
+          SRC_TAG: ${{ env.SRC_TAG }}
+          DEST_TAG: ${{ env.DEST_TAG }}
+        run: |
+          echo "Tagging $IMAGE_NAME:$SRC_TAG -> $DEST_TAG"
+          oc tag -n ${NAMESPACE} ${IMAGE_NAME}:${SRC_TAG} ${IMAGE_NAME}:${DEST_TAG}

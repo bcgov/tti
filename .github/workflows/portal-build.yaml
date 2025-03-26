@@ -1,0 +1,43 @@
+name: Portal - Build Development
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - fpo-web/**
+      - '!README.md'
+    branches: [ master ]
+  pull_request:
+    types: [ opened, edited, reopened, review_requested ]
+    branches: [ master ]
+
+env:
+  OPENSHIFT_NAMESPACE: ${{ secrets.OPENSHIFT_NAMESPACE }}
+  BUILD_CONFIG_APP: angular-app-build
+  BUILD_CONFIG_NGINX: angular-on-nginx-build
+
+jobs:
+
+  openshift-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Build Angular App
+        uses: redhat-developer/openshift-actions@v1.1
+        with:
+          version: "latest"
+          openshift_server_url: ${{ secrets.OPENSHIFT_URL }}
+          parameters: '{"apitoken": "${{ secrets.OPENSHIFT_TOKEN }}", "acceptUntrustedCerts": "true"}'
+          cmd: |
+            'version'
+            'start-build ${BUILD_CONFIG_APP} -n ${OPENSHIFT_NAMESPACE} --follow'
+
+      - name: Build NGinx Runtime Container
+        uses: redhat-developer/openshift-actions@v1.1
+        with:
+          version: "latest"
+          openshift_server_url: ${{ secrets.OPENSHIFT_URL }}
+          parameters: '{"apitoken": "${{ secrets.OPENSHIFT_TOKEN }}", "acceptUntrustedCerts": "true"}'
+          cmd: |
+            'version'
+            'start-build ${BUILD_CONFIG_NGINX} -n ${OPENSHIFT_NAMESPACE} --follow'
