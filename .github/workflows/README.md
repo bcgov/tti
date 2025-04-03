@@ -1,6 +1,11 @@
 # GitHub Actions
 
-## Use Service Account for build/deploy
+## Required Secrets
+- OPENSHIFT_NAMESPACE
+- OPENSHIFT_TOKEN
+- OPENSHIFT_URL
+
+## Fetch/create OPENSHIFT_TOKEN
 
 ### Check if Service account exists
  ```
@@ -20,7 +25,7 @@ oc apply -f sa_token.yaml
 
 ### Fetch the long-lived token for the sa
 ```
-oc get secret github-action-sa-token -n <tools-ns> -o jsonpath='{.data.token}' | base64 -d`
+oc get secret github-action-sa-token -n <tools-ns> -o jsonpath='{.data.token}' | base64 -d
 ```
 
 ###  Test token in https://jwt.io to confirm no expiry
