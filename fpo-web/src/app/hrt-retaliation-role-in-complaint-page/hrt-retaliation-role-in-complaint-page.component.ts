@@ -37,6 +37,7 @@ export class HrtRetaliationRoleInComplaintPageComponent
           {
             type: "radiogroup",
             name: "Is the retaliation about",
+            title: "What is the retaliation about",
             isRequired: true,
             choices: [
               "A complaint that someone filed with the BC Human Rights Tribunal",

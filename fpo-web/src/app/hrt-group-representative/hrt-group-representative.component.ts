@@ -113,7 +113,7 @@ export class HrtGroupRepresentativeComponent implements OnInit, OnDestroy {
         elements: [
           {
             type: "radiogroup",
-            name: "Select only one option:",
+            name: "Select only one option",
             isRequired: true,
             choices: [
               "The Representative of the group or class or, if the Representative is an organization, the individual speaking for the organization",
@@ -170,7 +170,7 @@ export class HrtGroupRepresentativeComponent implements OnInit, OnDestroy {
           },
         ],
         visibleIf:
-          "{Select only one option:} <> 'The Representative of the group or class or, if the Representative is an organization, the individual speaking for the organization'",
+          "{Select only one option} <> 'The Representative of the group or class or, if the Representative is an organization, the individual speaking for the organization'",
         title:
           "Name of the person who will communicate with the Tribunal",
       },
