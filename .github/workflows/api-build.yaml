@@ -7,9 +7,6 @@ on:
       - fpo-api/**
       - '!README.md'
     branches: [ master ]
-  pull_request:
-    types: [ opened, edited, reopened, review_requested ]
-    branches: [ master ]
 
 env:
   OPENSHIFT_NAMESPACE: ${{ secrets.OPENSHIFT_NAMESPACE }}
