@@ -113,6 +113,8 @@ export class HrtGroupRepSutabilityPageComponent implements OnInit, OnDestroy {
             isRequired: true,
 		        maxLength: 255,
           },
+          /* NOTE the declarations on the review and PDF page are static content, so if you edit these choices, you also need to edit the review and PDF page
+             This is to retain the order below, which does not seem to be a feature with this particular version of SurveyJS */
           {
             type: "checkbox",
             name: "Declarations",
@@ -130,13 +132,13 @@ export class HrtGroupRepSutabilityPageComponent implements OnInit, OnDestroy {
               "have no interest that conflicts with those of the group or class members;",
               "will resign as Representative if a conflict of interest arises;",
               "will act in good faith;",
-              " will focus on the group or class members’ rights to protection against discrimination under the Human Rights Code;",
+              "will focus on the group or class members’ rights to protection against discrimination under the Human Rights Code;",
               "will give information to the group or class about my role, how the complaint process works, how long it takes, and what the outcomes may be;",
               "will keep the group or class members up-to-date about what steps I have taken, what stage we are at, and what to expect next;",
               "will be available to the group or class members to answer their questions;",
               "will tell the group or class members my plan for how they may take part in the process;  ",
-              "will do the job of a Representative, including: ",
-            ],
+              "will do the job of a Representative, including:",
+            ]
           },
           {
             "type": "html",
