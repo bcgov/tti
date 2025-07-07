@@ -165,6 +165,7 @@ export default {
           width: "30%",
           title: "Phone number  ",
           isRequired: true,
+          maxLength: 40,
         },
         {
           type: "text",
@@ -172,6 +173,8 @@ export default {
           width: "40%",
           title: "Email",
           isRequired: true,
+          maxLength: 80,
+          validators: [{ type: "email" }],
         },
         {
           type: "text",
@@ -179,6 +182,7 @@ export default {
           width: "30%",
           startWithNewLine: false,
           title: "Cellphone number  ",
+          maxLength: 40,
         },
         {
           type: "text",
@@ -186,6 +190,7 @@ export default {
           width: "30%",
           startWithNewLine: false,
           title: "Fax",
+          maxLength: 40,
         },
       ],
       visibleIf: "{Select only one option:} <> 'The complainant'",

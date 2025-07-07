@@ -212,11 +212,9 @@ export class HrtGroupRepSutabilityPageComponent implements OnInit, OnDestroy {
     this.toggleModal();
   }
   toggleModal() {
-    console.log(123123123);
     this.closed = !this.closed;
   }
   renderSurvey() {
-    console.log("hi!1");
     // let surveyModel =
     this.survey = new Survey.Model(this.json);
     this.survey.maxOthersLength = 255;
@@ -226,12 +224,11 @@ export class HrtGroupRepSutabilityPageComponent implements OnInit, OnDestroy {
     }
 
     this.survey.onAfterRenderQuestion.add((survey, options) => {
-      console.log("+++++++");
-      console.log(options);
+
 
       //Return if there is no description to show in popup
       if (!options.question.popupdescription) return;
-      console.log("has desc");
+
       //Add a button;
       var btn = document.createElement("button");
       btn.type = "button";
@@ -252,9 +249,7 @@ export class HrtGroupRepSutabilityPageComponent implements OnInit, OnDestroy {
       header.appendChild(btn);
     });
 
-    console.log("hi!2");
     Survey.SurveyNG.render("surveyElementHRT", { model: this.survey });
-    console.log("hi!3");
   }
   handleNextStep() {
     if (this.survey.isLastPage) {
