@@ -1,10 +1,12 @@
-:host /deep/ #sq_111.sv_qstn {
-    padding-top: 0;
+:host ::ng-deep #sq_111.sv_qstn {
+  padding-top: 0;
 }
-:host /deep/ #sq_110.sv_qstn {
-    padding-top: 0;
-    padding-bottom: 0;
+
+:host ::ng-deep #sq_110.sv_qstn {
+  padding-top: 0;
+  padding-bottom: 0;
 }
+
 .popup-container {
   // display: none;
   position: fixed;
@@ -16,6 +18,7 @@
   justify-content: center;
   align-items: center;
 }
+
 .popup-content {
   width: 60%;
   min-width: 300px;
@@ -24,9 +27,11 @@
   background-color: #ffffff;
   max-height: 80vh;
 }
+
 .popup-header {
   display: flex;
   justify-content: flex-end;
+
   span {
     border: 2px solid #777;
     padding: 5px;
@@ -35,6 +40,7 @@
     border-radius: 5px;
   }
 }
+
 .popup-body {
   // margin-top: 10px;
   padding-top: 5px;
@@ -42,17 +48,21 @@
   max-height: 70vh;
   -ms-overflow-style: none;
 }
+
 .popup-body::-webkit-scrollbar {
   display: none;
 }
-:host /deep/ .section {
+
+:host ::ng-deep .section {
   margin-bottom: 30px;
+
   h4 {
     font-size: 18px;
     font-weight: bold;
     border-bottom: 2px solid;
   }
 }
+
 .row {
   max-width: 1170px;
   margin: 30 auto;
