@@ -46,6 +46,7 @@ export class HrtRetaliationFileInTimePageComponent
                 type: "text",
                 name: "Respondent name",
                 titleLocation: "top",
+                maxLength: 255,
               },
               {
                 type: "text",

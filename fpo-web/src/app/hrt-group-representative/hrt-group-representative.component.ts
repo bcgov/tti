@@ -81,6 +81,7 @@ export class HrtGroupRepresentativeComponent implements OnInit, OnDestroy {
             type: "text",
             name: "Preferred name",
             title: "Preferred name – e.g. traditional name, nickname, alias",
+            maxLength: 255,
           },
           {
             type: "checkbox",
