@@ -82,12 +82,12 @@ export default {
         {
           type: "text",
           name: "First name",
-          maxLength: 255,
+          maxLength: 40,
         },
         {
           type: "text",
           name: " Last name",
-          maxLength: 255,
+          maxLength: 40,
         },
         {
           type: "radiogroup",
