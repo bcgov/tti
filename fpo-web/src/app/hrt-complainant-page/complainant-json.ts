@@ -7,17 +7,18 @@ export default {
           type: "text",
           name: "Legal Name - First Name",
           isRequired: true,
-          maxLength: 40,
+          maxLength: 255,
         },
         {
           type: "text",
           name: "Legal Name - Last Name",
           isRequired: true,
-          maxLength: 40,
+          maxLength: 255,
         },
         {
           type: "text",
           name: "Preferred name - e.g. traditional name, nickname, alias",
+          maxLength: 255,
         },
         {
           type: "checkbox",
@@ -81,10 +82,12 @@ export default {
         {
           type: "text",
           name: "First name",
+          maxLength: 255,
         },
         {
           type: "text",
           name: " Last name",
+          maxLength: 255,
         },
         {
           type: "radiogroup",

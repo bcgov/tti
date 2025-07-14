@@ -53,7 +53,7 @@ export class HrtGroupRespondentContactInformationPageComponent
                 type: "text",
                 name: "Name of the Respondent",
                 description: " [If naming an employer, give the name and address from a paystub, T4, or employment contract.]",
-                maxLength: 40,
+                maxLength: 255,
                 isRequired: true,
               },
               {
