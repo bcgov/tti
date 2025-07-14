@@ -47,6 +47,7 @@ export class HrtGroupTimeLimitPageComponent implements OnInit, OnDestroy {
                 titleLocation: "top",
                 type: "text",
                 name: "Respondent name",
+                maxLength: 255,
               },
               {
                 titleLocation: "top",

@@ -7,17 +7,18 @@ export default {
           type: "text",
           name: "Legal Name - First Name",
           isRequired: true,
-          maxLength: 40,
+          maxLength: 255,
         },
         {
           type: "text",
           name: "Legal Name - Last Name",
           isRequired: true,
-          maxLength: 40,
+          maxLength: 255,
         },
         {
           type: "text",
           name: "Preferred name - e.g. traditional name, nickname, alias",
+          maxLength: 255,
         },
         {
           type: "checkbox",
@@ -81,10 +82,12 @@ export default {
         {
           type: "text",
           name: "First name",
+          maxLength: 40,
         },
         {
           type: "text",
           name: " Last name",
+          maxLength: 40,
         },
         {
           type: "radiogroup",
@@ -165,6 +168,7 @@ export default {
           width: "30%",
           title: "Phone number  ",
           isRequired: true,
+          maxLength: 40,
         },
         {
           type: "text",
@@ -172,6 +176,8 @@ export default {
           width: "40%",
           title: "Email",
           isRequired: true,
+          maxLength: 80,
+          validators: [{ type: "email" }],
         },
         {
           type: "text",
@@ -179,6 +185,7 @@ export default {
           width: "30%",
           startWithNewLine: false,
           title: "Cellphone number  ",
+          maxLength: 40,
         },
         {
           type: "text",
@@ -186,6 +193,7 @@ export default {
           width: "30%",
           startWithNewLine: false,
           title: "Fax",
+          maxLength: 40,
         },
       ],
       visibleIf: "{Select only one option:} <> 'The complainant'",

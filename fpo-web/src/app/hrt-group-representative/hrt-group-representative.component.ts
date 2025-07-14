@@ -81,6 +81,7 @@ export class HrtGroupRepresentativeComponent implements OnInit, OnDestroy {
             type: "text",
             name: "Preferred name",
             title: "Preferred name – e.g. traditional name, nickname, alias",
+            maxLength: 255,
           },
           {
             type: "checkbox",
@@ -227,19 +228,19 @@ export class HrtGroupRepresentativeComponent implements OnInit, OnDestroy {
           {
             type: "text",
             name: "Phone number",
-            maxLength: 255,
+            maxLength: 40,
             // isRequired: true,
           },
           {
             type: "text",
             name: "Fax",
-            maxLength: 255,
+            maxLength: 40,
             startWithNewLine: false,
           },
           {
             type: "text",
             name: "Email",
-            maxLength: 255,
+            maxLength: 80,
             validators: [{ type: "email" }],
             // isRequired: true,
           },
