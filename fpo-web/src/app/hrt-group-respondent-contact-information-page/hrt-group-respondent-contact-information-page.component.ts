@@ -8,7 +8,7 @@ import { Router } from "@angular/router";
 // import * as widgets from 'surveyjs-widgets';
 // Import Survey.js
 import * as Survey from "survey-angular";
-import { PHONE_NUMBER_REGEX, SURVEYJS_PHONE_VALIDATOR } from "utils/validators";
+
 // import { addQuestionTypes } from '../survey/question-types';
 // widgets.inputmask(Survey);
 @Component({
@@ -126,10 +126,6 @@ export class HrtGroupRespondentContactInformationPageComponent
                 title: "Phone number  ",
                 maxLength: 40,
                 // isRequired: true,
-                inputType: "tel",
-                validators: [
-                  SURVEYJS_PHONE_VALIDATOR
-                ],
               },
               {
                 type: "text",
@@ -138,10 +134,6 @@ export class HrtGroupRespondentContactInformationPageComponent
                 maxLength: 40,
                 startWithNewLine: false,
                 title: "Cell phone number",
-                inputType: "tel",
-                validators: [
-                  SURVEYJS_PHONE_VALIDATOR
-                ],
               },
               {
                 type: "text",
@@ -150,10 +142,6 @@ export class HrtGroupRespondentContactInformationPageComponent
                 maxLength: 40,
                 startWithNewLine: false,
                 title: "Fax",
-                inputType: "tel",
-                validators: [
-                  SURVEYJS_PHONE_VALIDATOR
-                ],
               },
             ],
             panelAddText: "ADD Another Respondent",

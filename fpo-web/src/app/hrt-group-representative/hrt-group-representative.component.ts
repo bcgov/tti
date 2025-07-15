@@ -8,7 +8,7 @@ import { Router } from "@angular/router";
 // import * as widgets from 'surveyjs-widgets';
 // Import Survey.js
 import * as Survey from "survey-angular";
-import { SURVEYJS_PHONE_VALIDATOR } from "utils/validators";
+import { } from "utils/validators";
 // import { addQuestionTypes } from '../survey/question-types';
 // widgets.inputmask(Survey);
 @Component({
@@ -230,22 +230,13 @@ export class HrtGroupRepresentativeComponent implements OnInit, OnDestroy {
             type: "text",
             name: "Phone number",
             maxLength: 40,
-
             // isRequired: true,
-            inputType: "tel",
-            validators: [
-              SURVEYJS_PHONE_VALIDATOR
-            ],
           },
           {
             type: "text",
             name: "Fax",
             maxLength: 40,
             startWithNewLine: false,
-            inputType: "tel",
-            validators: [
-              SURVEYJS_PHONE_VALIDATOR
-            ],
           },
           {
             type: "text",
