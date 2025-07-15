@@ -1,3 +1,5 @@
+import { SURVEYJS_PHONE_VALIDATOR } from "utils/validators";
+
 export default {
   pages: [
     {
@@ -169,6 +171,10 @@ export default {
           title: "Phone number  ",
           isRequired: true,
           maxLength: 40,
+          inputType: "tel",
+          validators: [
+            SURVEYJS_PHONE_VALIDATOR
+          ],
         },
         {
           type: "text",
@@ -186,6 +192,10 @@ export default {
           startWithNewLine: false,
           title: "Cellphone number  ",
           maxLength: 40,
+          inputType: "tel",
+          validators: [
+            SURVEYJS_PHONE_VALIDATOR
+          ],
         },
         {
           type: "text",
@@ -194,6 +204,10 @@ export default {
           startWithNewLine: false,
           title: "Fax",
           maxLength: 40,
+          inputType: "tel",
+          validators: [
+            SURVEYJS_PHONE_VALIDATOR
+          ],
         },
       ],
       visibleIf: "{Select only one option:} <> 'The complainant'",

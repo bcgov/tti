@@ -1,11 +1,11 @@
 import { TestBed, async } from '@angular/core/testing';
 import {
-    RouterTestingModule
+  RouterTestingModule
 } from '@angular/router/testing';
 
 import { AppComponent } from './app.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
-import { SurveyComponent } from './survey.component';
+// import { SurveyComponent } from './survey.component';
 //import { SurveyEditorComponent } from './survey.editor.component';
 
 describe('AppComponent', () => {
@@ -15,7 +15,7 @@ describe('AppComponent', () => {
         AppComponent,
         BreadcrumbComponent
       ],
-      imports: [ RouterTestingModule ]
+      imports: [RouterTestingModule]
     }).compileComponents();
   }));
 
