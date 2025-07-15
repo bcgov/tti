@@ -8,7 +8,6 @@ import { Router } from "@angular/router";
 // import * as widgets from 'surveyjs-widgets';
 // Import Survey.js
 import * as Survey from "survey-angular";
-import { } from "utils/validators";
 // import { addQuestionTypes } from '../survey/question-types';
 // widgets.inputmask(Survey);
 @Component({

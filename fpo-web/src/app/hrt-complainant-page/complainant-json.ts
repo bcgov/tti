@@ -1,5 +1,3 @@
-import { } from "utils/validators";
-
 export default {
   pages: [
     {
