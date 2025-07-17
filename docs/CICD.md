@@ -7,7 +7,7 @@ The application is managed via Github Actions.
 | `api-build`      | `master`                     | Builds the API; always uses the `master` branch.                                                |
 | `api-deploy`     | `master`                     | Deploys the API; only deploys builds from the `master` branch.                                  |
 | `portal-build`   | Current workflow branch      | Chain build that builds the Angular app and packages it into an Nginx image, deployed to `dev`. |
-| `portal-deploy`  | `master`                     | Deploys the Portal; only deploys builds originating from `master`.                              |
+| `portal-deploy`  | `latest built image`                     | Deploys the Portal; If deploying for test, it deploys the latest image, if deploying for prod it deploys from test.                              |
 
 
 This application has no defined deployment strategy. Because it is in maintenance mode, a suggested pattern is as follows:
