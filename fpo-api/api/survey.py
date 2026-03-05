@@ -45,6 +45,10 @@ class SurveySubmission(APIView):
         if not body:
             return HttpResponseBadRequest("Missing application results")
 
+        complainant = body.get("complainant") or body.get("partyInfo") or body.get("representative") or {}
+        if not complainant.get("Legal Name - Last Name"):
+            return HttpResponseBadRequest("Missing required complainant information")
+
         print("body: ",body)
 
         sSFDC_org = 'qa'

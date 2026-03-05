@@ -284,6 +284,10 @@ export class HrtRetaliationReviewPageComponent implements OnInit, OnDestroy {
   }
   handleSubmit() {
     if (this.checkbox) {
+      if (!(this.formData && this.formData.partyInfo && this.formData.partyInfo["Legal Name - Last Name"])) {
+        window.alert("Your form data could not be loaded. Please go back to the beginning of the form and try again.");
+        return;
+      }
       console.log("Happy!");
 
       const attachment_html = document.getElementById("pdf-container")
