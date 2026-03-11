@@ -148,6 +148,7 @@ export class HrtGroupRespondentContactInformationPageComponent
             panelRemoveText: "REMOVE Above Respondent",
             panelCount: 1,
             minPanelCount: 1,
+            maxPanelCount: 7,
           },
         ],
       },
