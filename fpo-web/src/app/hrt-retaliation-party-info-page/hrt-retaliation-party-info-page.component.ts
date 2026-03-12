@@ -269,6 +269,7 @@ export class HrtRetaliationPartyInfoPageComponent implements OnInit, OnDestroy {
             panelRemoveText: "REMOVE Above Respondent",
             name: "respondentsContactInformation",
             title: "Respondent's Contact Information",
+            maxPanelCount: 8,
             templateElements: [
               {
                 type: "text",
