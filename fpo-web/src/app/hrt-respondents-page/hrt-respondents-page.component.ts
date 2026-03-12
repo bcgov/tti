@@ -42,7 +42,7 @@ export class HrtRespondentsPageComponent implements OnInit, OnDestroy {
           {
             type: "paneldynamic",
             name: "Respondents",
-            maxPanelCount: 10,
+            maxPanelCount: 8,
             // "hasTitle": false,
             titleLocation: "hidden",
             templateElements: [
@@ -372,7 +372,7 @@ export class HrtRespondentsPageComponent implements OnInit, OnDestroy {
                     visibleIf:
                       '{panel.Grounds of discrimination} contains "Age"',
                     isRequired: true,
-                    maxLength: 2000,
+                    maxLength: 150,
                   },
                   {
                     type: "text",
@@ -381,7 +381,7 @@ export class HrtRespondentsPageComponent implements OnInit, OnDestroy {
                     visibleIf:
                       '{panel.Grounds of discrimination} contains "Ancestry"',
                     isRequired: true,
-                    maxLength: 2000,
+                    maxLength: 150,
                   },
                   {
                     type: "text",
@@ -390,7 +390,7 @@ export class HrtRespondentsPageComponent implements OnInit, OnDestroy {
                     visibleIf:
                       '{panel.Grounds of discrimination} contains "Colour"',
                     isRequired: true,
-                    maxLength: 2000,
+                    maxLength: 150,
                   },
                   {
                     type: "text",
@@ -399,7 +399,7 @@ export class HrtRespondentsPageComponent implements OnInit, OnDestroy {
                     visibleIf:
                       '{panel.Grounds of discrimination} contains "Family Status"',
                     isRequired: true,
-                    maxLength: 2000,
+                    maxLength: 150,
                   },
                   {
                     type: "text",
@@ -408,7 +408,7 @@ export class HrtRespondentsPageComponent implements OnInit, OnDestroy {
                     visibleIf:
                       '{panel.Grounds of discrimination} contains "Gender Identity or Expression"',
                     isRequired: true,
-                    maxLength: 2000,
+                    maxLength: 150,
                   },
                   {
                     type: "text",
@@ -417,7 +417,7 @@ export class HrtRespondentsPageComponent implements OnInit, OnDestroy {
                     visibleIf:
                       '{panel.Grounds of discrimination} contains "Marital Status"',
                     isRequired: true,
-                    maxLength: 2000,
+                    maxLength: 150,
                   },
                   {
                     type: "text",
@@ -426,7 +426,7 @@ export class HrtRespondentsPageComponent implements OnInit, OnDestroy {
                     visibleIf:
                       '{panel.Grounds of discrimination} contains "Mental Disability"',
                     isRequired: true,
-                    maxLength: 2000,
+                    maxLength: 150,
                   },
                   {
                     type: "text",
@@ -435,7 +435,7 @@ export class HrtRespondentsPageComponent implements OnInit, OnDestroy {
                     visibleIf:
                       '{panel.Grounds of discrimination} contains "Physical Disability"',
                     isRequired: true,
-                    maxLength: 2000,
+                    maxLength: 150,
                   },
                   {
                     type: "text",
@@ -444,7 +444,7 @@ export class HrtRespondentsPageComponent implements OnInit, OnDestroy {
                     visibleIf:
                       '{panel.Grounds of discrimination} contains "Place of Origin"',
                     isRequired: true,
-                    maxLength: 2000,
+                    maxLength: 150,
                   },
                   {
                     type: "text",
@@ -453,7 +453,7 @@ export class HrtRespondentsPageComponent implements OnInit, OnDestroy {
                     visibleIf:
                       '{panel.Grounds of discrimination} contains "Political Belief"',
                     isRequired: true,
-                    maxLength: 2000,
+                    maxLength: 150,
                   },
                   {
                     type: "text",
@@ -462,7 +462,7 @@ export class HrtRespondentsPageComponent implements OnInit, OnDestroy {
                     visibleIf:
                       '{panel.Grounds of discrimination} contains "Race"',
                     isRequired: true,
-                    maxLength: 2000,
+                    maxLength: 150,
                   },
                   {
                     type: "text",
@@ -471,7 +471,7 @@ export class HrtRespondentsPageComponent implements OnInit, OnDestroy {
                     visibleIf:
                       '{panel.Grounds of discrimination} contains "Religion"',
                     isRequired: true,
-                    maxLength: 2000,
+                    maxLength: 150,
                   },
                   {
                     type: "text",
@@ -480,7 +480,7 @@ export class HrtRespondentsPageComponent implements OnInit, OnDestroy {
                     visibleIf:
                       '{panel.Grounds of discrimination} contains "Sex"',
                     isRequired: true,
-                    maxLength: 2000,
+                    maxLength: 150,
                   },
                   {
                     type: "text",
@@ -489,7 +489,7 @@ export class HrtRespondentsPageComponent implements OnInit, OnDestroy {
                     visibleIf:
                       '{panel.Grounds of discrimination} contains "Sexual Orientation"',
                     isRequired: true,
-                    maxLength: 2000,
+                    maxLength: 150,
                   },
                   {
                     type: "text",
@@ -498,7 +498,7 @@ export class HrtRespondentsPageComponent implements OnInit, OnDestroy {
                     visibleIf:
                       '{panel.Grounds of discrimination} contains "Source of Income"',
                     isRequired: true,
-                    maxLength: 2000,
+                    maxLength: 150,
                   },
                   {
                     type: "text",
@@ -507,7 +507,7 @@ export class HrtRespondentsPageComponent implements OnInit, OnDestroy {
                     visibleIf:
                       '{panel.Grounds of discrimination} contains "Political Belief"',
                     isRequired: true,
-                    maxLength: 2000,
+                    maxLength: 150,
                   },
 
                   // {
