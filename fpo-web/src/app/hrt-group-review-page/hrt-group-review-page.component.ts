@@ -226,7 +226,7 @@ export class HrtGroupReviewPageComponent implements OnInit, OnDestroy {
   }
   handleSubmit() {
     if (this.checkbox) {
-      if (!(this.formData && this.formData.representative && this.formData.representative["Individual Legal Name \u2013 Last name"])) {
+      if (!(this.formData && this.formData.representative && (this.formData.representative["Individual Legal Name \u2013 Last name"] || this.formData.representative["Organization Name"]))) {
         window.alert("Your form data could not be loaded. Please go back to the beginning of the form and try again.");
         return;
       }
