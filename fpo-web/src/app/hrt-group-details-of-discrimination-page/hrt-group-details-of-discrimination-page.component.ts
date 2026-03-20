@@ -52,7 +52,7 @@ export class HrtGroupDetailsOfDiscriminationPageComponent
                 description:
                   "<b>Example:</b> Do not say, “This person harassed group members.” Write out their words and actions. <br>Give a short answer. Your short answer helps us understand the details you give below.",
                 isRequired: true,
-                maxLength: 1000,
+                maxLength: 2000,
               },
               {
                 type: "comment",
@@ -61,7 +61,7 @@ export class HrtGroupDetailsOfDiscriminationPageComponent
                 description:
                   "<div><b>Examples:</b> <ul><li>The words the Respondent uses are slurs about Black men.</li><li>Security follow Indigenous people in the store, not other people.</li><li>This organization refuses to provide interpreters so Deaf people can participate.</li></ul><p>Consider getting help if you are not sure. See <a href='http://www.bchrt.bc.ca/whocanhelp/index.htm' target='_blank'>Who Can Help?</a> </p></div> ",
                 isRequired: true,
-                maxLength: 1000,
+                maxLength: 2000,
               },
               {
                 type: "matrixdynamic",
@@ -84,7 +84,7 @@ export class HrtGroupDetailsOfDiscriminationPageComponent
                     cellType: "comment",
                     isRequired: true,
                     rows: 2,
-                    maxLength: 475,
+                    maxLength: 1500,
                   },
                 ],
                 choices: [1, 2, 3, 4, 5],
@@ -97,7 +97,7 @@ export class HrtGroupDetailsOfDiscriminationPageComponent
             ],
             panelCount: 1,
             minPanelCount: 1,
-            maxPanelCount: 7,
+            maxPanelCount: 10,
             panelAddText: "Add Details for Another Named Respondent",
             panelRemoveText: "Remove Above Respondent",
           },

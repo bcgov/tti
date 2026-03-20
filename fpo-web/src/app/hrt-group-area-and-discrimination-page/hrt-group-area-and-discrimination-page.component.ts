@@ -121,7 +121,7 @@ export class HrtGroupAreaAndDiscriminationPageComponent
                 visibleIf:
                   "{panel.What are the Grounds of Discrimination?} contains 'Age (19 or over)'",
                 isRequired: true,
-                maxLength: 150,
+                maxLength: 2000,
               },
               {
                 type: "text",
@@ -131,7 +131,7 @@ export class HrtGroupAreaAndDiscriminationPageComponent
                 visibleIf:
                   "{panel.What are the Grounds of Discrimination?} contains 'Indigenous Identity'",
                 isRequired: true,
-                maxLength: 150,
+                maxLength: 2000,
               },
               {
                 type: "text",
@@ -141,7 +141,7 @@ export class HrtGroupAreaAndDiscriminationPageComponent
                 visibleIf:
                   "{panel.What are the Grounds of Discrimination?} contains 'Ancestry'",
                 isRequired: true,
-                maxLength: 150,
+                maxLength: 2000,
               },
               {
                 type: "text",
@@ -151,7 +151,7 @@ export class HrtGroupAreaAndDiscriminationPageComponent
                 visibleIf:
                   "{panel.What are the Grounds of Discrimination?} contains 'Colour'",
                 isRequired: true,
-                maxLength: 150,
+                maxLength: 2000,
               },
               {
                 type: "text",
@@ -161,7 +161,7 @@ export class HrtGroupAreaAndDiscriminationPageComponent
                 visibleIf:
                   "{panel.What are the Grounds of Discrimination?} contains 'Criminal Conviction'",
                 isRequired: true,
-                maxLength: 150,
+                maxLength: 2000,
               },
               {
                 type: "panel",
@@ -175,7 +175,7 @@ export class HrtGroupAreaAndDiscriminationPageComponent
                 visibleIf:
                   "{panel.What are the Grounds of Discrimination?} contains 'Family Status'",
                 isRequired: true,
-                maxLength: 150,
+                maxLength: 2000,
               },
               {
                 type: "text",
@@ -185,7 +185,7 @@ export class HrtGroupAreaAndDiscriminationPageComponent
                 visibleIf:
                   "{panel.What are the Grounds of Discrimination?} contains 'Gender Identity or Expression'",
                 isRequired: true,
-                maxLength: 150,
+                maxLength: 2000,
               },
               {
                 type: "text",
@@ -195,7 +195,7 @@ export class HrtGroupAreaAndDiscriminationPageComponent
                 visibleIf:
                   "{panel.What are the Grounds of Discrimination?} contains 'Marital Status'",
                 isRequired: true,
-                maxLength: 150,
+                maxLength: 2000,
               },
               {
                 type: "text",
@@ -205,7 +205,7 @@ export class HrtGroupAreaAndDiscriminationPageComponent
                 visibleIf:
                   "{panel.What are the Grounds of Discrimination?} contains 'Mental Disability'",
                 isRequired: true,
-                maxLength: 150,
+                maxLength: 2000,
               },
               {
                 type: "text",
@@ -215,7 +215,7 @@ export class HrtGroupAreaAndDiscriminationPageComponent
                 visibleIf:
                   "{panel.What are the Grounds of Discrimination?} contains 'Physical Disability'",
                 isRequired: true,
-                maxLength: 150,
+                maxLength: 2000,
               },
               {
                 type: "text",
@@ -225,7 +225,7 @@ export class HrtGroupAreaAndDiscriminationPageComponent
                 visibleIf:
                   "{panel.What are the Grounds of Discrimination?} contains 'Place of Origin'",
                 isRequired: true,
-                maxLength: 150,
+                maxLength: 2000,
               },
               {
                 type: "text",
@@ -235,7 +235,7 @@ export class HrtGroupAreaAndDiscriminationPageComponent
                 visibleIf:
                   "{panel.What are the Grounds of Discrimination?} contains 'Political Belief'",
                 isRequired: true,
-                maxLength: 150,
+                maxLength: 2000,
               },
               {
                 type: "text",
@@ -245,7 +245,7 @@ export class HrtGroupAreaAndDiscriminationPageComponent
                 visibleIf:
                   "{panel.What are the Grounds of Discrimination?} contains 'Race'",
                 isRequired: true,
-                maxLength: 150,
+                maxLength: 2000,
               },
               {
                 type: "text",
@@ -255,7 +255,7 @@ export class HrtGroupAreaAndDiscriminationPageComponent
                 visibleIf:
                   "{panel.What are the Grounds of Discrimination?} contains 'Religion'",
                 isRequired: true,
-                maxLength: 150,
+                maxLength: 2000,
               },
               {
                 type: "text",
@@ -265,7 +265,7 @@ export class HrtGroupAreaAndDiscriminationPageComponent
                 visibleIf:
                   "{panel.What are the Grounds of Discrimination?} contains 'Sex'",
                 isRequired: true,
-                maxLength: 150,
+                maxLength: 2000,
               },
               {
                 type: "text",
@@ -275,7 +275,7 @@ export class HrtGroupAreaAndDiscriminationPageComponent
                 visibleIf:
                   "{panel.What are the Grounds of Discrimination?} contains 'Sexual Orientation'",
                 isRequired: true,
-                maxLength: 150,
+                maxLength: 2000,
               },
               {
                 type: "text",
@@ -285,7 +285,7 @@ export class HrtGroupAreaAndDiscriminationPageComponent
                 visibleIf:
                   "{panel.What are the Grounds of Discrimination?} contains 'Lawful source of income'",
                 isRequired: true,
-                maxLength: 150,
+                maxLength: 2000,
               },
             ],
             panelCount: 1,
@@ -367,45 +367,6 @@ export class HrtGroupAreaAndDiscriminationPageComponent
     }
 
     console.log("hi!2");
-    const originalAreaChoices = [
-      "Employment",
-      "Services ",
-      "Tenancy",
-      "Purchase of property",
-      "Publication",
-      "Membership in a Union, employer's organization, or occupational associations",
-    ];
-
-    const updateAreaChoices = (survey) => {
-      const areasQuestion = survey.getQuestionByName("areas");
-      if (!areasQuestion) return;
-      const allSelected = areasQuestion.panels
-        .map(panel => panel.getQuestionByName("What is the Area of Discrimination?").value)
-        .filter(v => v);
-      areasQuestion.panels.forEach(panel => {
-        const areaQ = panel.getQuestionByName("What is the Area of Discrimination?");
-        const thisValue = areaQ.value;
-        const otherSelected = allSelected.filter(v => v !== thisValue);
-        areaQ.choices = originalAreaChoices.map(area => ({
-          value: area,
-          text: area,
-          enableIf: otherSelected.includes(area) ? "1 = 2" : "",
-        }));
-      });
-    };
-
-    this.survey.onValueChanged.add((survey, options) => {
-      if (options.name === "areas") {
-        updateAreaChoices(survey);
-      }
-    });
-
-    this.survey.onDynamicPanelRemoved.add((survey, options) => {
-      if (options.question.name === "areas") {
-        updateAreaChoices(survey);
-      }
-    });
-
     this.survey.onAfterRenderQuestion.add((survey, options) => {
       console.log("+++++++");
       console.log(options);

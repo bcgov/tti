@@ -368,7 +368,6 @@ export class HrtComplainantPageComponent implements OnInit, OnDestroy {
             ],
             panelCount: 1,
             minPanelCount: 1,
-            maxPanelCount: 8,
             panelAddText: "ADD Another Respondent",
             panelRemoveText: "REMOVE Above Respondent",
           },
