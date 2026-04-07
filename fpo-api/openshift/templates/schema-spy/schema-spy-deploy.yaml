@@ -90,15 +90,6 @@ objects:
           maxSurge: 25%
       triggers:
         - type: ConfigChange
-        - type: ImageChange
-          imageChangeParams:
-            automatic: true
-            containerNames:
-              - ${NAME}
-            from:
-              kind: ImageStreamTag
-              namespace: "${IMAGE_NAMESPACE}"
-              name: "${NAME}:${TAG_NAME}"
       replicas: 1
       selector:
         name: ${NAME}
@@ -113,7 +104,8 @@ objects:
         spec:
           containers:
             - name: ${NAME}
-              image: " "
+              image: docker.io/schemaspy/schemaspy:v7.0.2
+              imagePullPolicy: Always
               ports:
                 - containerPort: 8080
                   protocol: TCP
@@ -171,12 +163,6 @@ parameters:
     required: true
     value: schema-spy
 
-  - name: IMAGE_NAMESPACE
-    displayName: Image Namespace
-    required: true
-    description: The namespace of the OpenShift project containing the imagestream for
-      the application.
-    value: qjtfov-tools
   - name: MEMORY_LIMIT
     displayName: Memory Limit
     required: true
