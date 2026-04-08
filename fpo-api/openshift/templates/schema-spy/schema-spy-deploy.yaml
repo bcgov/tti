@@ -68,6 +68,24 @@ objects:
         kind: Service
         name: ${NAME}
 
+  - kind: ConfigMap
+    apiVersion: v1
+    metadata:
+      name: ${NAME}-nginx-config
+      labels:
+        name: ${NAME}
+        app: ${APP_NAME}
+        env: ${TAG_NAME}
+    data:
+      nginx.conf: |
+        server {
+            listen 8080;
+            location / {
+                root /usr/share/nginx/html;
+                index index.html;
+            }
+        }
+
   - kind: DeploymentConfig
     apiVersion: v1
     metadata:
@@ -102,28 +120,42 @@ objects:
             role: ${ROLE}
             env: ${TAG_NAME}
         spec:
-          containers:
-            - name: ${NAME}
-              image: docker.io/schemaspy/schemaspy:v7.0.2
+          initContainers:
+            - name: ${NAME}-init
+              image: docker.io/schemaspy/schemaspy:7.0.2
               imagePullPolicy: IfNotPresent
-              ports:
-                - containerPort: 8080
-                  protocol: TCP
               env:
-                - name: DATABASE_SERVICE_NAME
-                  value: "${DATABASE_SERVICE_NAME}"
-                - name: POSTGRESQL_DATABASE
-                  value: "${DATABASE_NAME}"
-                - name: POSTGRESQL_USER
+                - name: DB_USER
                   valueFrom:
                     secretKeyRef:
                       name: "${DATABASE_DEPLOYMENT_NAME}"
                       key: database-user
-                - name: POSTGRESQL_PASSWORD
+                - name: DB_PASSWORD
                   valueFrom:
                     secretKeyRef:
                       name: "${DATABASE_DEPLOYMENT_NAME}"
                       key: database-password
+              args:
+                - "-t"
+                - "pgsql11"
+                - "-host"
+                - "${DATABASE_SERVICE_NAME}"
+                - "-db"
+                - "${DATABASE_NAME}"
+                - "-u"
+                - "$(DB_USER)"
+                - "-p"
+                - "$(DB_PASSWORD)"
+              volumeMounts:
+                - name: output
+                  mountPath: /output
+          containers:
+            - name: ${NAME}
+              image: docker.io/nginxinc/nginx-unprivileged:alpine
+              imagePullPolicy: IfNotPresent
+              ports:
+                - containerPort: 8080
+                  protocol: TCP
               readinessProbe:
                 initialDelaySeconds: 3
                 timeoutSeconds: 30
@@ -131,7 +163,7 @@ objects:
                   path: "/"
                   port: 8080
               livenessProbe:
-                initialDelaySeconds: 300
+                initialDelaySeconds: 10
                 timeoutSeconds: 30
                 httpGet:
                   path: "/"
@@ -143,6 +175,17 @@ objects:
                 limits:
                   cpu: "${CPU_LIMIT}"
                   memory: "${MEMORY_LIMIT}"
+              volumeMounts:
+                - name: output
+                  mountPath: /usr/share/nginx/html
+                - name: nginx-config
+                  mountPath: /etc/nginx/conf.d
+          volumes:
+            - name: output
+              emptyDir: {}
+            - name: nginx-config
+              configMap:
+                name: ${NAME}-nginx-config
 
 parameters:
   - name: NAME
