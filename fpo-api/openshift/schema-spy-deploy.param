@@ -6,7 +6,7 @@
 NAME=schema-spy
 APP_NAME=fpo
 ROLE=schema-spy
-IMAGE_NAMESPACE=qjtfov-tools
+# IMAGE_NAMESPACE=qjtfov-tools
 MEMORY_LIMIT=512Mi
 # APPLICATION_DOMAIN=hrt-schema-dev.pathfinder.gov.bc.ca
 DATABASE_SERVICE_NAME=postgresql
