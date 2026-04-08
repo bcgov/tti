@@ -105,7 +105,7 @@ objects:
           containers:
             - name: ${NAME}
               image: docker.io/schemaspy/schemaspy:v7.0.2
-              imagePullPolicy: Always
+              imagePullPolicy: IfNotPresent
               ports:
                 - containerPort: 8080
                   protocol: TCP
