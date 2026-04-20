@@ -12,7 +12,7 @@ env:
   OPENSHIFT_NAMESPACE: ${{ secrets.OPENSHIFT_NAMESPACE }}
   BUILD_CONFIG_APP: angular-app-build
   BUILD_CONFIG_NGINX: angular-on-nginx-build
-
+  REF: ${{ github.ref }} # This is the branch or tag ref that triggered the workflow
 jobs:
 
   openshift-build:
@@ -27,7 +27,7 @@ jobs:
           parameters: '{"apitoken": "${{ secrets.OPENSHIFT_TOKEN }}", "acceptUntrustedCerts": "true"}'
           cmd: |
             'version'
-            'start-build ${BUILD_CONFIG_APP} -n ${OPENSHIFT_NAMESPACE} --follow'
+            'start-build ${BUILD_CONFIG_APP} -n ${OPENSHIFT_NAMESPACE} --commit ${REF}  --follow'
 
       - name: Build NGinx Runtime Container
         uses: redhat-developer/openshift-actions@v1.1
@@ -37,4 +37,4 @@ jobs:
           parameters: '{"apitoken": "${{ secrets.OPENSHIFT_TOKEN }}", "acceptUntrustedCerts": "true"}'
           cmd: |
             'version'
-            'start-build ${BUILD_CONFIG_NGINX} -n ${OPENSHIFT_NAMESPACE} --follow'
+            'start-build ${BUILD_CONFIG_NGINX} -n ${OPENSHIFT_NAMESPACE} --commit ${REF} --follow'
