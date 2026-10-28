@@ -11,6 +11,17 @@ import { addQuestionTypes } from "../survey/question-types";
 import * as Survey from "survey-angular";
 // import { addQuestionTypes } from '../survey/question-types';
 // widgets.inputmask(Survey);
+const AREA_QUESTION = "What is the Area of Discrimination?";
+const AREA_CHOICES = [
+  "Employment",
+  "Services ",
+  "Tenancy",
+  "Purchase of property",
+  "Publication",
+  "Membership in a Union, employer’s organization, or occupational associations",
+];
+const AREA_POPUP_DESCRIPTION = `<div class="section"> <h4> Employment </h4> <p> Employment means work for an employer who controls the work and pay. It can include work as a volunteer, intern, or “independent contractor”. </p> <p> Applies when you: </p> <ul> <li>apply for a job</li> <li>get fired</li> <li>are working as an employee</li> </ul> <p> You are an employee if you depend on your employer and they control your work and pay. </p> </div> <div class="section"> <h4> Services </h4> <p> Applies when you want a service. For example, you go out to eat or shop. You go to school. You apply for a government benefit. You own a strata unit. </p> </div> <div class="section"> <h4> Tenancy </h4> <p> Applies when you: </p> <ul> <li>try to rent a space</li> <li>are renting a space</li> <li>get evicted</li> </ul> <p>Tenancy applies to renting a space, including most co-op housing.</p> </div> <div class="section"> <h4> Purchase of property </h4> <p> Applies when you want to buy a house, condo, other unit, or land </p> </div> <div class="section"> <h4> Publication </h4> <p> Covers flyers, articles, statements, notices, signs, and symbols. </p> <p>Applies when someone aims to discriminate.</p> <p><b>Example.</b> A "whites only" sign.</p><br> <p> Applies to a publication that is likely to expose a person or group to hatred. </p> <p> <b>Example.</b> An article that says a religious group is disgusting and immoral. </p> </div> <div class="section"> <h4> Membership in a Union, employer’s organization, or occupational associations </h4> <p> Applies when: </p> <ul> <li>you want to join a union or get licensed to work by a regulator</li> <li>you get suspended or expelled</li> <li>you are a member</li> </ul> </div>`;
+
 @Component({
   selector: "app-hrt-group-area-and-discrimination-page",
   templateUrl: "./hrt-group-area-and-discrimination-page.component.html",
@@ -26,30 +37,52 @@ export class HrtGroupAreaAndDiscriminationPageComponent
 
     pages: [
       {
-        name: "page1",
+        name: "areasPage",
+        elements: [
+          {
+            // Same heading markup the grounds page gets from the paneldynamic title
+            type: "html",
+            name: "areasHeading",
+            html:
+              '<h5 class="sv-title sv-question__title">Please enter the Areas and Grounds</h5>',
+          },
+          {
+            type: "panel",
+            name: "areasPanel",
+            elements: [
+              {
+                type: "checkbox",
+                name: "selectedAreas",
+                title: AREA_QUESTION,
+                description: "Check any area that applies to your complaint\n",
+                isRequired: true,
+                popupdescription: AREA_POPUP_DESCRIPTION,
+                choices: AREA_CHOICES,
+              },
+            ],
+          },
+        ],
+      },
+      {
+        name: "groundsPage",
         elements: [
           {
             type: "paneldynamic",
-            panelAddText: "Add Area",
-            panelRemoveText: "Remove Area",
             name: "areas",
             title: "Please enter the Areas and Grounds",
             showHeader: false,
+            allowAddPanel: false,
+            allowRemovePanel: false,
             templateElements: [
               {
+                // Area is chosen on areasPage, so only show the selected one read-only
                 type: "radiogroup",
-                name: "What is the Area of Discrimination?",
-                description: "Check any area that applies to your complaint\n",
+                name: AREA_QUESTION,
                 isRequired: true,
-                popupdescription: `<div class="section"> <h4> Employment </h4> <p> Employment means work for an employer who controls the work and pay. It can include work as a volunteer, intern, or “independent contractor”. </p> <p> Applies when you: </p> <ul> <li>apply for a job</li> <li>get fired</li> <li>are working as an employee</li> </ul> <p> You are an employee if you depend on your employer and they control your work and pay. </p> </div> <div class="section"> <h4> Services </h4> <p> Applies when you want a service. For example, you go out to eat or shop. You go to school. You apply for a government benefit. You own a strata unit. </p> </div> <div class="section"> <h4> Tenancy </h4> <p> Applies when you: </p> <ul> <li>try to rent a space</li> <li>are renting a space</li> <li>get evicted</li> </ul> <p>Tenancy applies to renting a space, including most co-op housing.</p> </div> <div class="section"> <h4> Purchase of property </h4> <p> Applies when you want to buy a house, condo, other unit, or land </p> </div> <div class="section"> <h4> Publication </h4> <p> Covers flyers, articles, statements, notices, signs, and symbols. </p> <p>Applies when someone aims to discriminate.</p> <p><b>Example.</b> A "whites only" sign.</p><br> <p> Applies to a publication that is likely to expose a person or group to hatred. </p> <p> <b>Example.</b> An article that says a religious group is disgusting and immoral. </p> </div> <div class="section"> <h4> Membership in a Union, employer’s organization, or occupational associations </h4> <p> Applies when: </p> <ul> <li>you want to join a union or get licensed to work by a regulator</li> <li>you get suspended or expelled</li> <li>you are a member</li> </ul> </div>`,
-                choices: [
-                  "Employment",
-                  "Services ",
-                  "Tenancy",
-                  "Purchase of property",
-                  "Publication",
-                  "Membership in a Union, employer’s organization, or occupational associations",
-                ],
+                readOnly: true,
+                popupdescription: AREA_POPUP_DESCRIPTION,
+                choices: AREA_CHOICES,
+                choicesVisibleIf: `{item} = {panel.${AREA_QUESTION}}`,
               },
               {
                 type: "checkbox",
@@ -288,9 +321,6 @@ export class HrtGroupAreaAndDiscriminationPageComponent
                 maxLength: 150,
               },
             ],
-            panelCount: 1,
-            minPanelCount: 1,
-            maxPanelCount: 10,
           },
         ],
       },
@@ -363,48 +393,15 @@ export class HrtGroupAreaAndDiscriminationPageComponent
     this.survey.maxOthersLength = 255;
     if (this.formData) {
       console.log("hi122!");
-      this.survey.data = this.formData;
+      this.survey.data = {
+        ...this.formData,
+        selectedAreas: (this.formData["areas"] || []).map(
+          (area) => area[AREA_QUESTION]
+        ),
+      };
     }
 
     console.log("hi!2");
-    const originalAreaChoices = [
-      "Employment",
-      "Services ",
-      "Tenancy",
-      "Purchase of property",
-      "Publication",
-      "Membership in a Union, employer's organization, or occupational associations",
-    ];
-
-    const updateAreaChoices = (survey) => {
-      const areasQuestion = survey.getQuestionByName("areas");
-      if (!areasQuestion) return;
-      const allSelected = areasQuestion.panels
-        .map(panel => panel.getQuestionByName("What is the Area of Discrimination?").value)
-        .filter(v => v);
-      areasQuestion.panels.forEach(panel => {
-        const areaQ = panel.getQuestionByName("What is the Area of Discrimination?");
-        const thisValue = areaQ.value;
-        const otherSelected = allSelected.filter(v => v !== thisValue);
-        areaQ.choices = originalAreaChoices.map(area => ({
-          value: area,
-          text: area,
-          enableIf: otherSelected.includes(area) ? "1 = 2" : "",
-        }));
-      });
-    };
-
-    this.survey.onValueChanged.add((survey, options) => {
-      if (options.name === "areas") {
-        updateAreaChoices(survey);
-      }
-    });
-
-    this.survey.onDynamicPanelRemoved.add((survey, options) => {
-      if (options.question.name === "areas") {
-        updateAreaChoices(survey);
-      }
-    });
 
     this.survey.onAfterRenderQuestion.add((survey, options) => {
       console.log("+++++++");
@@ -442,8 +439,43 @@ export class HrtGroupAreaAndDiscriminationPageComponent
         desc.innerHTML = options.question.description;
       });
 
+    // Area is read-only on groundsPage; show just its name like the mockup
+    this.survey.onAfterRenderQuestion.add((survey, options) => {
+      if (options.question.name !== AREA_QUESTION) return;
+      const inputs = options.htmlElement.querySelectorAll("input[type=radio]");
+      for (let i = 0; i < inputs.length; i++) {
+        inputs[i].style.display = "none";
+      }
+    });
+
+    this.survey.onCurrentPageChanging.add((survey, options) => {
+      if (options.newCurrentPage.name === "groundsPage") {
+        this.syncAreaPanels();
+      }
+    });
+
     Survey.SurveyNG.render("surveyElementHRT", { model: this.survey });
     console.log("hi!3");
+  }
+  // One grounds panel per selected area, keeping grounds already entered for that area
+  syncAreaPanels() {
+    const selected = this.survey.getValue("selectedAreas") || [];
+    const panels = this.survey.getValue("areas") || [];
+    const areas = AREA_CHOICES.filter((area) => selected.includes(area)).map(
+      (area) =>
+        panels.find((panel) => panel[AREA_QUESTION] === area) || {
+          [AREA_QUESTION]: area,
+        }
+    );
+    const question = this.survey.getQuestionByName("areas");
+    question.panelCount = areas.length;
+    question.value = areas;
+  }
+  handlePreviousStep() {
+    if (this.survey.isFirstPage) {
+      return;
+    }
+    this.survey.prevPage();
   }
   handleNextStep() {
     if (this.survey.isLastPage) {
@@ -451,7 +483,7 @@ export class HrtGroupAreaAndDiscriminationPageComponent
       if (validated) {
         this.missionService.confirmMission({
           name: "areaAndGrounds",
-          data: this.survey.data,
+          data: { areas: this.survey.data.areas },
           complete: true,
         });
         this.router.navigateByUrl("hrt-group/progress");
